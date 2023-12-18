@@ -1,0 +1,85 @@
+<!-- views/strategy-guide-detail.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategy Guide Detail</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .strategy-guide-detail {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .strategy-guide-detail h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .strategy-guide-detail h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .strategy-guide-detail p {
+            font-size: 16px;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .strategy-guide-detail strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">G</div>
+        <nav>
+            <a href="/">Homepage</a>
+            <a href="/game-reviews">Game Reviews</a>
+            <a href="/strategy-guides">Strategy Guides</a>
+        </nav>
+        <input type="text" class="search" id="searchInput" placeholder="Search...">
+        <button id="searchButton">Search</button>
+        <a href="/login" class="user-link">User</a>
+    </div>
+    <div class="strategy-guide-detail">
+        <h1>Strategy Guide Detail</h1>
+        <h2><%= strategyGuide.Title %></h2>
+        <p><strong>Author:</strong> <%= strategyGuide.Author %></p>
+        <p><strong>Publish Date:</strong> <%= strategyGuide.PublishDate %></p>
+        <p><strong>Content:</strong></p>
+        <p><%= strategyGuide.GuideContent %></p>
+    </div>
+</body>
+<script>
+    document.getElementById('searchButton').addEventListener('click', function() {
+        var searchInput = document.getElementById('searchInput').value;
+        if (searchInput) {
+      
+            var searchURL = "/game-intro-detail?game_name=" + encodeURIComponent(searchInput);
+            window.location.href = searchURL;
+        }
+    });
+</script>
+</html>

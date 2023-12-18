@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Forums</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo">G</div>
+    <nav>
+        <a href="/">Homepage</a>
+        <a href="/game-reviews">Game Reviews</a>
+        <a href="/strategy-guides">Strategy Guides</a>
+
+    </nav>
+    <input type="text" class="search" id="searchInput" placeholder="Search...">
+    <button id="searchButton">Search</button>
+    <a href="/login" class="user-link">User</a>
+</div>
+<body>
+    
+    <div class="content">
+        <% reviews.forEach(function(review) { %>
+            <div class="review-item">
+                <div class="review-title">
+                    <a href="/game-intro?game_id=<%= review.GameID %>"><%= review.GameName %></a>
+                </div>
+                <div class="review-body"><%= review.ReviewContent %></div>
+                
+    
+                <form action="/delete-review" method="post">
+                    <input type="hidden" name="reviewId" value="<%= review.ReviewID %>">
+                    <input type="submit" value="Delete Review">
+                </form>
+            </div>
+        <% }); %>
+    </div>
+    <a href="/add-review-page" class="add-review-button">Add New Review</a>
+
+    
+</body>
+<script>
+    
+    document.getElementById('searchButton').addEventListener('click', function() {
+        var searchInput = document.getElementById('searchInput').value;
+        if (searchInput) {
+      
+            var searchURL = "/game-intro-detail?game_name=" + encodeURIComponent(searchInput);
+            window.location.href = searchURL;
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review</title>
+    <style>
+        /* Basic styling for the body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        /* Container styling for form */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Styling for headings */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* Styling for labels */
+        label {
+            font-weight: bold;
+        }
+        /* Styling for form inputs and textarea */
+        select, input[type="text"], input[type="number"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        /* Allow vertical resizing for textarea */
+        textarea {
+            resize: vertical;
+        }
+        /* Styling for submit button */
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 20px;
+            cursor: pointer;
+        }
+        /* Hover effect for submit button */
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add a New Review</h1>
+        <form action="/add-review" method="post">
+            <!-- Dropdown for selecting game name -->
+            <label for="gameName">Game Name:</label>
+            <select id="gameName" name="gameName" required>
+                <% games.forEach(function(game) { %>
+                    <option value="<%= game.GameName %>"><%= game.GameName %></option>
+                <% }); %>
+            </select><br>
+
+            <!-- Hidden input for game ID -->
+            <input type="hidden" id="gameId" name="gameId" value="1"> <!-- Initialize a default GameID -->
+
+            <!-- Input for author's name -->
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required><br>
+
+            <!-- Input for rating -->
+            <label for="rating">Rating:</label>
+            <input type="number" id="rating" name="rating" min="0" max="5" step="0.01" required><br>
+
+            <!-- Textarea for review content -->
+            <label for="reviewContent">Review Content:</label>
+            <textarea id="reviewContent" name="reviewContent" rows="4" required></textarea><br>
+
+            <!-- Submit button -->
+            <input type="submit" value="Add Review">
+        </form>
+    </div>
+</body>
+</html>

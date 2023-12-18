@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Forums</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo">G</div>
+    <nav>
+        <a href="/">Homepage</a>
+        <a href="/game-reviews">Game Reviews</a>
+        <a href="/strategy-guides">Strategy Guides</a>
+
+    </nav>
+    <input type="text" class="search" id="searchInput" placeholder="Search...">
+    <button id="searchButton">Search</button>
+  
+    <a href="/login" class="user-link">User</a>
+</div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= gameInfo.GameName %> - Game Introduction</title>
+</head>
+
+<div class="container mt-5">
+    <h1 class="custom-title"><%= gameInfo.GameName %></h1>
+    <p class="custom-description"><%= gameInfo.Description %></p>
+    <p><strong class="custom-label">Release Date:</strong> <span class="custom-value"><%= gameInfo.ReleaseDate %></span></p>
+    <p><strong class="custom-label">Publisher:</strong> <span class="custom-value"><%= gameInfo.Publisher %></span></p>
+</div>
+
+<div class="comments-container">
+    <% reviews.forEach(function(review, index) { %>
+        <div class="comment comment<%= index + 1 %>">
+            <p><strong><%= review.Author %></strong> - Rating: <%= review.Rating %></p>
+            <p><%= review.ReviewContent %></p>
+            <p>Publish Date: <%= review.PublishDate %></p>
+        </div>
+    <% }); %>
+</div>
+<script>
+    document.getElementById('searchButton').addEventListener('click', function() {
+        var searchInput = document.getElementById('searchInput').value;
+        if (searchInput) {
+         
+            var searchURL = '/game-intro?game_name=' + encodeURIComponent(searchInput);
+            window.location.href = searchURL;
+        }
+    });
+</script>
+<script>
+    document.getElementById('searchButton').addEventListener('click', function() {
+        var searchInput = document.getElementById('searchInput').value;
+        if (searchInput) {
+    
+            var searchURL = "/game-intro-detail?game_name=" + encodeURIComponent(searchInput);
+            window.location.href = searchURL;
+        }
+    });
+</script>
+
+</html>
